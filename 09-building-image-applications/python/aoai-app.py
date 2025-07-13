@@ -17,7 +17,7 @@ client = AzureOpenAI(
   azure_endpoint=os.environ['AZURE_OPENAI_ENDPOINT'] 
   )
 
-model = os.environ['AZURE_OPENAI_DEPLOYMENT']
+model = os.environ['AZURE_OPENAI_IMAGE_DEPLOYMENT']  # this is the model name, e.g. "dall-e-2" or "dall-e-3"
 
 
 try:

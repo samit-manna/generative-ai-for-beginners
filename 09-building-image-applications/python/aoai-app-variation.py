@@ -15,7 +15,7 @@ client = AzureOpenAI(
   azure_endpoint=os.environ['AZURE_OPENAI_ENDPOINT'] 
   )
 
-model = os.environ['AZURE_OPENAI_DEPLOYMENT']
+model = os.environ['AZURE_OPENAI_IMAGE_DEPLOYMENT']  # this is the model name, e.g. "dall-e-2" or "dall-e-3"
 
 image_dir = os.path.join(os.curdir, 'images')
 
@@ -29,12 +29,15 @@ image.show()
 try:
     print("LOG creating variation")
     result = client.images.create_variation(
+        model=model,
         image=open(image_path, "rb"),
         n=1,
         size="1024x1024"
     )
 
-    client.images.create_variation()
+    print("LOG created variation")
+
+    # client.images.create_variation()
     response = json.loads(result.model_dump_json())
 
     image_path = os.path.join(image_dir, 'generated_variation.png')
